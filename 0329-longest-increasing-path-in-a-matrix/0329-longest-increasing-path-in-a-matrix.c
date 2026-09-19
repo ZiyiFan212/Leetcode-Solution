@@ -61,6 +61,6 @@ int longestIncreasingPath(int** matrix, int matrixSize, int* matrixColSize) {
         }
     }
 
-    free( memory );
+   
     return answer;
 }
