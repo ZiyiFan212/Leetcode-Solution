@@ -1,6 +1,4 @@
 double findMaxAverage(int* nums, int numsSize, int k) {
-    if (numsSize < 1) return -DBL_MAX; // some guard
-
     if (numsSize == 1) return (nums[0]/(double)k);
 
     if (numsSize < k){
