@@ -5,12 +5,11 @@ int characterReplacement(char* s, int k) {
     int answer = 0;
     int left = 0; int right = 0;
     int frequency[26] = {0};
+    int highest_frequency = 0;
     while (right < length){
         frequency[s[right] - 'A']++;
-        int highest_frequency = 0;
-        for (int i = 0; i < 26; i++) {
-            highest_frequency = (frequency[i] > highest_frequency) ? frequency[i] : highest_frequency;
-        }
+        if (frequency[s[right] - 'A'] > highest_frequency) highest_frequency = frequency[s[right] - 'A'];
+
 
         if ((k + highest_frequency) < (right-left+1)){
             frequency[s[left] - 'A']--;
