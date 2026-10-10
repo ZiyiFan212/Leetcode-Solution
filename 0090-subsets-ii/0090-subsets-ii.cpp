@@ -6,13 +6,13 @@ public:
         vector<vector<int>> answer; answer.reserve(2 << numsSize);
         answer.push_back({});
         
-        int last_size = 0; 
+        int lastSize = 0; 
         for (int i = 0; i < numsSize; ++i) {
-            int current_size = answer.size();
-            int start = (i > 0 && nums[i] == nums[i - 1]) ? (current_size - last_size) : 0;
+            int currSize = answer.size();
+            int start = (i > 0 && nums[i] == nums[i - 1]) ? (currSize - lastSize) : 0;
             
-            last_size = current_size - start;
-            for (int j = start; j < current_size; ++j) {
+            lastSize = currSize - start;
+            for (int j = start; j < currSize; ++j) {
                 vector<int> new_subset = answer[j];
                 new_subset.push_back(nums[i]);
                 answer.push_back(std::move(new_subset));
