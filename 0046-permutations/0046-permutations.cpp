@@ -1,22 +1,17 @@
 class Solution {
 public:
     vector<vector<int>> answer;
-    
-    void compute_perm(vector<int> current, vector<int> remaining) {
 
-        if (remaining.empty()) {
-            answer.push_back(current);
+    void solve(int position, vector<int>& nums){
+        if (position == nums.size()){
+            answer.push_back(nums);
             return;
         }
 
-        for (int i = 0; i < remaining.size(); i++) {
-            vector<int> nextCurrent = current;
-            nextCurrent.push_back(remaining[i]);
-
-            vector<int> nextRemaining = remaining;
-            nextRemaining.erase(nextRemaining.begin() + i);
-
-            compute_perm(nextCurrent, nextRemaining);
+        for(int i = position; i < nums.size(); i++){
+            swap(nums[position], nums[i]);
+            solve(position+1, nums);
+            swap(nums[position], nums[i]);
         }
     }
 
@@ -24,7 +19,7 @@ public:
         if (nums.empty()) return {{}};
         if (nums.size() == 1) return {{nums.at(0)}};
 
-        compute_perm({}, nums);
+        solve(0, nums);
         return answer;
     }
 };
