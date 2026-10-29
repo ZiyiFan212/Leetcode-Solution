@@ -3,15 +3,13 @@ class Solution {
         val map = HashMap<Int, Int>()
 
         for (i in nums.indices) {
-            map[nums[i]] = i
-        }
+            val diff = target - nums[i]
 
-        for (j in nums.indices) {
-            val diff = target - nums[j]
-
-            if (map.containsKey(diff) && map[diff] != j) {
-                return intArrayOf(map[diff]!!, j)
+            if (map.containsKey(diff)) {
+                return intArrayOf(map[diff]!!, i)
             }
+
+            map[nums[i]] = i
         }
 
         return intArrayOf()
