@@ -5,23 +5,23 @@ public:
     int cols = 0;
 
     bool dfs(
-        vector<vector<char>>& board, int r, int c, int index,    vector<vector<int>>& visited) {
+        vector<vector<char>>& board, int r, int c, int index,    vector<vector<bool>>& visited) {
             if (r < 0 || r >= rows || c < 0 || c >= cols) return false;
 
-            if (visited[r][c] == 1) return false;
+            if (visited[r][c] == true) return false;
 
             if (board[r][c] != target[index]) return false;
 
             if (index == target.size()-1) return true;
 
-            visited[r][c] = 1;
+            visited[r][c] = true;
             bool found =
                 dfs(board, r-1, c, index+1, visited) ||
                 dfs(board, r+1, c, index+1, visited) ||
                 dfs(board, r, c-1, index+1, visited) ||
                 dfs(board, r, c+1, index+1, visited);
 
-            visited[r][c] = 0;
+            visited[r][c] = false;
             return found;
         }
 
@@ -30,7 +30,7 @@ public:
 
         rows = board.size();
         cols = board.front().size();
-        std::vector<std::vector<int>> visitGrid(rows, std::vector<int>(cols, 0));
+        std::vector<std::vector<bool>> visitGrid(rows, std::vector<bool>(cols, false));
        
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
